@@ -1,0 +1,1090 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehdi NEFZI — Portfolio BUT RT2 Cyber</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #030712;
+    --bg2: #060d1f;
+    --surface: #0c1425;
+    --surface2: #0f1b30;
+    --border: #1a2d4a;
+    --border2: #1e3557;
+    --blue: #38bdf8;
+    --blue-dim: rgba(56,189,248,0.08);
+    --blue-glow: rgba(56,189,248,0.3);
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.08);
+    --orange: #f97316;
+    --orange-dim: rgba(249,115,22,0.1);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.1);
+    --white: #e2e8f0;
+    --muted: #475569;
+    --muted2: #64748b;
+    --muted3: #94a3b8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Dot grid background */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(circle, rgba(56,189,248,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 100%);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(3,7,18,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 60px;
+  }
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500; font-size: 0.95rem;
+    color: var(--blue);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-brand-slash { color: var(--muted2); }
+  .nav-brand-name { color: var(--white); }
+  .nav-links { display: flex; gap: 0; list-style: none; }
+  .nav-links a {
+    color: var(--muted3); text-decoration: none;
+    font-size: 0.8rem; font-weight: 400;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0 16px; height: 60px;
+    display: flex; align-items: center;
+    border-right: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .nav-links li:first-child a { border-left: 1px solid var(--border); }
+  .nav-links a:hover { color: var(--blue); background: var(--blue-dim); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-status { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--green); }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink-slow 2s ease-in-out infinite; }
+  @keyframes blink-slow { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding: 80px 48px 60px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative; overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1120px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 420px; gap: 60px;
+    align-items: center;
+  }
+  .hero-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--blue);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-kicker::before { content: ''; display: block; width: 32px; height: 1px; background: var(--blue); }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700; line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+  .h1-first { display: block; color: var(--white); }
+  .h1-last {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--blue);
+  }
+  .hero-sub {
+    color: var(--muted3); font-size: 0.95rem; line-height: 1.75;
+    max-width: 480px; margin-bottom: 36px;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 14px; border-radius: 4px;
+    font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--border2); color: var(--muted3);
+    background: var(--surface);
+  }
+  .pill-blue { border-color: rgba(56,189,248,0.35); color: var(--blue); background: var(--blue-dim); }
+  .pill-green { border-color: rgba(74,222,128,0.3); color: var(--green); background: var(--green-dim); }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; border-radius: 4px;
+    font-weight: 500; font-size: 0.85rem; text-decoration: none;
+    cursor: pointer; border: none; transition: all 0.2s;
+    font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
+  }
+  .btn-primary { background: var(--blue); color: #030712; }
+  .btn-primary:hover { background: #7dd3fc; box-shadow: 0 0 24px var(--blue-glow); }
+  .btn-outline { background: transparent; color: var(--muted3); border: 1px solid var(--border2); }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* Terminal card */
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 6px; overflow: hidden;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.05), 0 32px 64px rgba(0,0,0,0.6);
+  }
+  .terminal-bar {
+    background: var(--surface2); padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #f87171; } .dot-y { background: #fbbf24; } .dot-g { background: #4ade80; }
+  .tb-title { margin-left: auto; color: var(--muted); font-size: 0.68rem; }
+  .terminal-body { padding: 20px; line-height: 1.95; }
+  .tp { color: var(--blue); } .tc { color: var(--white); }
+  .to { color: var(--green); } .tm { color: var(--muted2); }
+  .tw { color: var(--orange); }
+
+  /* Hero bottom bar */
+  .hero-stats-bar {
+    max-width: 1120px; margin: 48px auto 0; width: 100%;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border); border-radius: 6px;
+    overflow: hidden; background: var(--surface);
+  }
+  .stat-cell {
+    padding: 20px 28px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--blue); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted2); font-family: 'JetBrains Mono', monospace; }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 48px; position: relative; }
+  section > * { position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sec-label::before { content: '01'; color: var(--muted); margin-right: 2px; }
+  .sec-label[data-n="2"]::before { content: '02'; }
+  .sec-label[data-n="3"]::before { content: '03'; }
+  .sec-label[data-n="4"]::before { content: '04'; }
+  .sec-label[data-n="5"]::before { content: '05'; }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px;
+  }
+  .sec-intro { color: var(--muted3); font-size: 0.95rem; line-height: 1.7; margin-bottom: 52px; max-width: 560px; }
+
+  /* ── TIMELINE ── */
+  .tl { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: grid; grid-template-columns: 160px 1px 1fr;
+    gap: 0 32px; padding-bottom: 48px;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-left { text-align: right; padding-top: 4px; }
+  .tl-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted2); line-height: 1.4; }
+  .tl-type { font-size: 0.68rem; color: var(--muted); margin-top: 3px; }
+  .tl-spine { position: relative; display: flex; justify-content: center; }
+  .tl-spine::before { content: ''; position: absolute; top: 10px; bottom: -48px; left: 50%; width: 1px; background: var(--border2); transform: translateX(-50%); }
+  .tl-item:last-child .tl-spine::before { display: none; }
+  .tl-dot2 { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--border2); background: var(--bg); margin-top: 4px; flex-shrink: 0; transition: all 0.2s; }
+  .tl-dot2.on { border-color: var(--blue); background: var(--blue); box-shadow: 0 0 8px var(--blue-glow); }
+  .tl-dot2.dim { border-color: var(--muted); }
+  .tl-right { padding-top: 0; }
+  .tl-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .tl-logo { width: 22px; height: 22px; border-radius: 4px; object-fit: contain; background: white; padding: 2px; }
+  .tl-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; }
+  .tl-org { font-size: 0.82rem; color: var(--muted3); margin-bottom: 10px; }
+  .tl-desc { color: var(--muted3); font-size: 0.85rem; line-height: 1.7; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tg { display: inline-block; padding: 2px 10px; border-radius: 3px; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; }
+  .tg-blue { background: var(--blue-dim); border: 1px solid rgba(56,189,248,0.2); color: var(--blue); }
+  .tg-green { background: var(--green-dim); border: 1px solid rgba(74,222,128,0.2); color: var(--green); }
+  .tg-gray { background: var(--surface2); border: 1px solid var(--border); color: var(--muted3); }
+  .tg-orange { background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.25); color: var(--orange); }
+
+  /* ── PROJETS ── */
+  .alt-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .proj-card {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 6px; padding: 24px; text-decoration: none; display: block;
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .proj-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: var(--blue); transform: scaleY(0); transform-origin: top;
+    transition: transform 0.3s;
+  }
+  .proj-card:hover { border-color: rgba(56,189,248,0.4); background: var(--surface2); }
+  .proj-card:hover::before { transform: scaleY(1); }
+  .proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .proj-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--white); }
+  .proj-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 2px 8px; border-radius: 3px; }
+  .proj-desc { color: var(--muted3); font-size: 0.82rem; line-height: 1.6; margin-bottom: 14px; }
+  .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* ── COMPETENCES ── */
+  .comp-grid { display: grid; gap: 16px; }
+  .comp-card {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 6px; padding: 28px;
+    display: grid; grid-template-columns: 72px 1fr;
+    gap: 0 24px;
+    transition: border-color 0.2s;
+  }
+  .comp-card:hover { border-color: rgba(56,189,248,0.35); }
+  .comp-num-col { }
+  .comp-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    color: var(--blue); background: var(--blue-dim);
+    border: 1px solid rgba(56,189,248,0.2);
+    padding: 6px 8px; border-radius: 4px;
+    text-align: center; display: block; line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .comp-col { }
+  .comp-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; margin-bottom: 3px; }
+  .comp-subtitle { color: var(--muted2); font-size: 0.78rem; margin-bottom: 16px; }
+  .comp-body { color: var(--muted3); font-size: 0.85rem; line-height: 1.7; }
+  .comp-row { margin-bottom: 14px; }
+  .comp-row-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    color: var(--green); text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 5px;
+  }
+  .comp-body ul { padding-left: 16px; }
+  .comp-body li { margin-bottom: 4px; }
+  .comp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+
+  /* ── STAGE ── */
+  .stage-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .s-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 6px; padding: 24px; }
+  .s-card-full { grid-column: 1/-1; }
+  .s-card h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.9rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .s-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: contain; background: white; padding: 2px; }
+  .s-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+  .s-row:last-child { border-bottom: none; }
+  .s-label { color: var(--muted2); }
+  .s-val { color: var(--white); font-weight: 500; }
+  .badge-g { display: inline-flex; align-items: center; gap: 5px; background: var(--green-dim); border: 1px solid rgba(74,222,128,0.25); color: var(--green); padding: 2px 10px; border-radius: 3px; font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; }
+  .badge-r { display: inline-flex; align-items: center; gap: 5px; background: var(--red-dim); border: 1px solid rgba(248,113,113,0.25); color: var(--red); padding: 2px 10px; border-radius: 3px; font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; }
+  .s-list { color: var(--muted3); font-size: 0.85rem; line-height: 1.7; padding-left: 16px; }
+  .s-list li { margin-bottom: 5px; }
+
+  /* ── CV ── */
+  .cv-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cv-wrap { max-width: 800px; margin: 0 auto; }
+  .cv-dl { margin-bottom: 28px; }
+  .cv-card {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 6px; padding: 48px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  }
+  .cv-name { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 4px; }
+  .cv-title { color: var(--blue); font-size: 0.88rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 20px; }
+  .cv-contact {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    font-size: 0.75rem; color: var(--muted3);
+    font-family: 'JetBrains Mono', monospace;
+    padding-bottom: 20px; border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .cv-contact a { color: var(--muted3); text-decoration: none; }
+  .cv-contact a:hover { color: var(--blue); }
+  .cv-h3 {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--blue); margin: 22px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .cv-exp { margin-bottom: 16px; }
+  .cv-exp-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .cv-exp-title { font-weight: 600; font-size: 0.88rem; }
+  .cv-exp-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted2); }
+  .cv-exp-org { font-size: 0.78rem; color: var(--blue); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .cv-exp-org img { width: 16px; height: 16px; border-radius: 3px; object-fit: contain; background: white; padding: 1px; }
+  .cv-desc { color: var(--muted3); font-size: 0.8rem; line-height: 1.6; }
+  .cv-desc ul { padding-left: 14px; }
+  .cv-desc li { margin-bottom: 3px; }
+  .cv-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cv-tag { background: var(--surface2); border: 1px solid var(--border2); padding: 3px 10px; border-radius: 3px; font-size: 0.72rem; color: var(--muted3); font-family: 'JetBrains Mono', monospace; }
+
+  /* ── CONTACT ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; }
+  .contact-item {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 6px; padding: 20px 24px;
+    text-decoration: none; display: flex; align-items: center; gap: 14px;
+    transition: all 0.2s;
+  }
+  .contact-item:hover { border-color: rgba(56,189,248,0.4); background: var(--surface2); }
+  .contact-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .contact-info-label { font-size: 0.68rem; color: var(--muted2); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+  .contact-info-val { font-size: 0.85rem; color: var(--white); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface); border-top: 1px solid var(--border);
+    padding: 28px 48px; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: var(--muted2); font-family: 'JetBrains Mono', monospace;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--muted2); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--blue); }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 80px 20px 40px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats-bar { grid-template-columns: repeat(2,1fr); }
+    section { padding: 64px 20px; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .comp-card { grid-template-columns: 1fr; }
+    .stage-cards { grid-template-columns: 1fr; }
+    .tl-item { grid-template-columns: 100px 1px 1fr; gap: 0 16px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .cv-card { padding: 24px 20px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <span class="nav-brand-slash">~/</span>
+    <span class="nav-brand-name">mehdi-nefzi</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#parcours">parcours</a></li>
+    <li><a href="#projets">projets</a></li>
+    <li><a href="#competences">compétences</a></li>
+    <li><a href="#stage">stage</a></li>
+    <li><a href="#cv">cv</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-status"><span class="status-dot"></span>Disponible 2026–2027</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-inner container">
+    <div>
+      <div class="hero-kicker">BUT RT2 · Cybersécurité · UHA Colmar</div>
+      <h1>
+        <span class="h1-first">Mehdi</span>
+        <span class="h1-last">NEFZI</span>
+      </h1>
+      <p class="hero-sub">
+        Étudiant en <strong>BUT Réseaux &amp; Télécommunications</strong>, parcours <strong>Cybersécurité</strong> à l'UHA Colmar. Expérience terrain en support réseau grand compte, développement d'outils IT et déploiement télécom. Basé à <strong>Lyon</strong>. Permis B — véhiculé.
+      </p>
+      <div class="hero-pills">
+        <span class="pill pill-blue">Cybersécurité</span>
+        <span class="pill pill-blue">Réseaux</span>
+        <span class="pill pill-green">Python · Django</span>
+        <span class="pill pill-green">Permis B ✓</span>
+        <span class="pill">Lyon · Colmar</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#competences" class="btn btn-primary">Voir mes compétences</a>
+        <a href="CV MEHDI NEFZI BUT2 (1).pdf" download class="btn btn-outline">⬇ Télécharger le CV</a>
+        <a href="#projets" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
+    <div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="tb-title">mehdi@lyon ~ </span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="tp">❯ </span><span class="tc">cat whoami.txt</span></div>
+          <div class="to">Name    : Mehdi NEFZI</div>
+          <div class="to">Base    : Lyon · St-Priest</div>
+          <div class="to">Org     : UHA Colmar — BUT RT2</div>
+          <div class="to">Track   : Cybersécurité FI</div>
+          <div class="to">Permis  : B · véhiculé ✓</div>
+          <br>
+          <div><span class="tp">❯ </span><span class="tc">cat stage.log</span></div>
+          <div class="to">[2026] Computacenter St-Priest   ✓</div>
+          <div class="tw">[2025] Comunic Colmar (rompu)    ⚠</div>
+          <br>
+          <div><span class="tp">❯ </span><span class="tc">gh repo list Bouldochette</span></div>
+          <div class="to">DjangoDonneesFinal  Python/Django</div>
+          <div class="to">TP-PYTHON           Python</div>
+          <div class="tm">+ 2 repos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats-bar container">
+    <div class="stat-cell">
+      <div class="stat-num">5</div>
+      <div class="stat-label">compétences BUT RT</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">8</div>
+      <div class="stat-label">semaines de stage</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">4</div>
+      <div class="stat-label">repos GitHub publics</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">4</div>
+      <div class="stat-label">expériences pro</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <div class="container">
+    <div class="sec-label" data-n="1">Parcours</div>
+    <h2>Mon itinéraire</h2>
+    <p class="sec-intro">Formation académique, expériences professionnelles et jobs saisonniers.</p>
+    <div class="tl reveal">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">2023 – présent</div>
+          <div class="tl-type">Formation</div>
+        </div>
+        <div class="tl-spine"><div class="tl-dot2 on"></div></div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <img class="tl-logo" src="logo-uha.png" alt="UHA" onerror="this.style.display='none'">
+            <div class="tl-title">BUT Réseaux &amp; Télécommunications — Cybersécurité</div>
+          </div>
+          <div class="tl-org">Université de Haute-Alsace (UHA) · Colmar · Formation Initiale</div>
+          <div class="tl-desc">Formation en 3 ans couvrant les 5 compétences du référentiel RT. Spécialisation Cybersécurité en 2ème année. Projets pratiques : Python, Django, Cisco IOS, Linux, sécurité réseau.</div>
+          <div class="tl-tags">
+            <span class="tg tg-blue">Cisco IOS</span><span class="tg tg-blue">Linux</span>
+            <span class="tg tg-blue">Python</span><span class="tg tg-blue">Django</span>
+            <span class="tg tg-blue">Wireshark</span><span class="tg tg-blue">Cryptographie</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">2026<br>8 semaines</div>
+          <div class="tl-type">Stage</div>
+        </div>
+        <div class="tl-spine"><div class="tl-dot2 on"></div></div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <img class="tl-logo" src="logo-computacenter.png" alt="Computacenter" onerror="this.style.display='none'">
+            <div class="tl-title">Stage — Support Réseau &amp; Développement Outils IT</div>
+          </div>
+          <div class="tl-org">Computacenter · Saint-Priest (69) · Leader européen des services IT</div>
+          <div class="tl-desc">Support N1/N2 sur l'ensemble du réseau d'un grand fournisseur d'électricité français. Création d'un arbre de résolution d'incidents Wi-Fi et d'un arbre de communication entre les N1 et les techniciens envoyés sur site.</div>
+          <div class="tl-tags">
+            <span class="tg tg-blue">Support N1/N2</span><span class="tg tg-blue">ITSM</span>
+            <span class="tg tg-blue">SIEM</span><span class="tg tg-green">Outils internes</span>
+            <span class="tg tg-green">Énergie · Grand compte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">2025</div>
+          <div class="tl-type">Alternance</div>
+        </div>
+        <div class="tl-spine"><div class="tl-dot2 dim"></div></div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <img class="tl-logo" src="logo-comunic.png" alt="Comunic" style="background:#000;padding:2px;" onerror="this.style.display='none'">
+            <div class="tl-title">Alternance — Technicien Réseaux &amp; Télécom</div>
+          </div>
+          <div class="tl-org">Comunic · Colmar</div>
+          <div class="tl-desc">Technicien terrain : installation de téléphonie IP, réseaux LAN/WAN et vidéosurveillance chez des particuliers et PME de la région alsacienne. Contrat rompu avant terme pour des raisons indépendantes de mes compétences.</div>
+          <div class="tl-tags">
+            <span class="tg tg-gray">Téléphonie IP</span><span class="tg tg-gray">Vidéosurveillance</span>
+            <span class="tg tg-gray">LAN/WAN</span><span class="tg tg-gray">Terrain PME</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Été</div>
+          <div class="tl-type">Job saisonnier</div>
+        </div>
+        <div class="tl-spine"><div class="tl-dot2 dim"></div></div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <img class="tl-logo" src="logo-leclerc.png" alt="Leclerc" onerror="this.style.display='none'">
+            <div class="tl-title">Caissier — E.Leclerc</div>
+          </div>
+          <div class="tl-org">E.Leclerc · France</div>
+          <div class="tl-desc">Tenue de caisse, accueil clients, gestion des flux en période de forte affluence. Sens du service, rigueur et travail en équipe.</div>
+          <div class="tl-tags">
+            <span class="tg tg-gray">Service client</span><span class="tg tg-gray">Caisse</span><span class="tg tg-gray">Équipe</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Été</div>
+          <div class="tl-type">Job saisonnier</div>
+        </div>
+        <div class="tl-spine"><div class="tl-dot2 dim"></div></div>
+        <div class="tl-right">
+          <div class="tl-title">Cueillette de cerises</div>
+          <div class="tl-org">Exploitation agricole · Alsace</div>
+          <div class="tl-desc">Travail saisonnier agricole. Endurance, rigueur et capacité à opérer en conditions physiquement exigeantes.</div>
+          <div class="tl-tags">
+            <span class="tg tg-gray">Saisonnier</span><span class="tg tg-gray">Endurance</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJETS -->
+<section id="projets" class="alt-section">
+  <div class="container">
+    <div class="sec-label" data-n="2">GitHub · Bouldochette</div>
+    <h2>Mes projets</h2>
+    <p class="sec-intro">Repositories publics — projets académiques réalisés à l'UHA Colmar.</p>
+    <div class="proj-grid">
+
+      <a href="https://github.com/Bouldochette/DjangoDonneesFinal" target="_blank" class="proj-card reveal d1">
+        <div class="proj-top">
+          <div class="proj-name">DjangoDonneesFinal</div>
+          <span class="proj-badge tg tg-blue">Python · Django</span>
+        </div>
+        <div class="proj-desc">Application web de gestion de données. Backend Python (64%), templates HTML (24%), CSS (11%). Architecture MVC, base de données relationnelle.</div>
+        <div class="proj-tags">
+          <span class="tg tg-blue">Python</span><span class="tg tg-blue">Django</span><span class="tg tg-gray">HTML/CSS</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Bouldochette/TP-PYTHON" target="_blank" class="proj-card reveal d2">
+        <div class="proj-top">
+          <div class="proj-name">TP-PYTHON</div>
+          <span class="proj-badge tg tg-blue">Python</span>
+        </div>
+        <div class="proj-desc">Travaux pratiques Python — BUT RT UHA. Scripts d'automatisation, manipulation de données, outils réseau (Netmiko, Paramiko).</div>
+        <div class="proj-tags">
+          <span class="tg tg-blue">Python</span><span class="tg tg-green">Automatisation</span><span class="tg tg-gray">UHA</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Bouldochette/Bouldochette.github.io" target="_blank" class="proj-card reveal d3">
+        <div class="proj-top">
+          <div class="proj-name">Portfolio v1 — GitHub Pages</div>
+          <span class="proj-badge tg tg-gray">HTML · CSS</span>
+        </div>
+        <div class="proj-desc">Portfolio statique bilingue FR/EN hébergé sur GitHub Pages. 10 pages, 8 commits. Sections compétences, formation, parcours et projets.</div>
+        <div class="proj-tags">
+          <span class="tg tg-gray">HTML/CSS</span><span class="tg tg-green">GitHub Pages</span><span class="tg tg-gray">FR/EN</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Bouldochette/UHA" target="_blank" class="proj-card reveal">
+        <div class="proj-top">
+          <div class="proj-name">UHA</div>
+          <span class="proj-badge tg tg-gray">Académique</span>
+        </div>
+        <div class="proj-desc">Ressources et travaux réalisés à l'Université de Haute-Alsace dans le cadre du BUT Réseaux &amp; Télécommunications, parcours Cybersécurité.</div>
+        <div class="proj-tags">
+          <span class="tg tg-gray">BUT RT</span><span class="tg tg-blue">Cybersécurité</span><span class="tg tg-gray">UHA Colmar</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPETENCES -->
+<section id="competences">
+  <div class="container">
+    <div class="sec-label" data-n="3">Référentiel BUT RT</div>
+    <h2>Les 5 compétences</h2>
+    <p class="sec-intro">Chaque compétence documentée selon les critères du référentiel : contexte, traces, SAÉ et réflexivité.</p>
+    <div class="comp-grid reveal">
+
+      <div class="comp-card">
+        <div class="comp-num-col"><span class="comp-num">C01</span></div>
+        <div class="comp-col">
+          <div class="comp-title">Administrer les réseaux et l'internet</div>
+          <div class="comp-subtitle">Configuration, supervision et maintenance des équipements réseau</div>
+          <div class="comp-body">
+            <div class="comp-row">
+              <div class="comp-row-label">Contexte</div>
+              <p>Dans le cadre de mes SAÉ et de mon stage chez Computacenter, j'ai administré des équipements réseau pour assurer la disponibilité de l'infrastructure d'un grand fournisseur d'électricité français.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Actions</div>
+              <ul>
+                <li>Configuration de routeurs et switchs Cisco (VLAN, OSPF, ACL)</li>
+                <li>Supervision réseau (SNMP, dashboards)</li>
+                <li>Dépannage d'incidents réseau en environnement grand compte</li>
+              </ul>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">SAÉ</div>
+              <p>SAÉ 2.01 — Administration réseau d'une PME fictive : configuration Cisco complète (VLAN, routage inter-VLAN, ACL), supervision SNMP, rapport d'exploitation.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Réflexivité</div>
+              <p>Face à des problèmes de convergence OSPF, j'ai développé une méthode de diagnostic systématique (logs → coûts → tests) directement applicable à toute infrastructure réseau.</p>
+            </div>
+          </div>
+          <div class="comp-tags">
+            <span class="tg tg-blue">Cisco IOS</span><span class="tg tg-blue">VLAN</span>
+            <span class="tg tg-blue">OSPF</span><span class="tg tg-blue">SNMP</span>
+            <span class="tg tg-green">Computacenter</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-num-col"><span class="comp-num">C02</span></div>
+        <div class="comp-col">
+          <div class="comp-title">Connecter les entreprises et les usagers</div>
+          <div class="comp-subtitle">Déploiement de liaisons WAN, VPN et accès distants</div>
+          <div class="comp-body">
+            <div class="comp-row">
+              <div class="comp-row-label">Contexte</div>
+              <p>En alternance chez Comunic et chez Computacenter, j'ai déployé des solutions de connectivité : VPN pour télétravailleurs, réseaux LAN/WAN et téléphonie IP chez des PME alsaciennes.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Actions</div>
+              <ul>
+                <li>Configuration et test de tunnels VPN IPSec/OpenVPN</li>
+                <li>Installation réseaux LAN/WAN chez des PME (Comunic)</li>
+                <li>Déploiement de téléphonie IP et vidéosurveillance sur site</li>
+              </ul>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">SAÉ</div>
+              <p>SAÉ 2.02 — Réseau multi-sites : VPN site-à-site IPSec, interconnexion deux agences fictives, tests de connectivité, documentation architecture.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Réflexivité</div>
+              <p>Chez Comunic, l'adaptation aux contraintes terrain (locaux exigus, câblage existant) m'a appris à proposer des solutions pragmatiques. Chez Computacenter, j'ai simplifié la procédure VPN en rédigeant une documentation adaptée aux utilisateurs non-techniciens.</p>
+            </div>
+          </div>
+          <div class="comp-tags">
+            <span class="tg tg-blue">VPN IPSec</span><span class="tg tg-blue">OpenVPN</span>
+            <span class="tg tg-blue">WAN</span><span class="tg tg-blue">Téléphonie IP</span>
+            <span class="tg tg-green">Computacenter</span><span class="tg tg-green">Comunic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-num-col"><span class="comp-num">C03</span></div>
+        <div class="comp-col">
+          <div class="comp-title">Créer des outils et applications informatiques</div>
+          <div class="comp-subtitle">Développement de scripts, automatisation et outils réseau</div>
+          <div class="comp-body">
+            <div class="comp-row">
+              <div class="comp-row-label">Contexte</div>
+              <p>En stage chez Computacenter, j'ai conçu des outils structurant les processus de support. Mes projets GitHub (<a href="https://github.com/Bouldochette/TP-PYTHON" style="color:var(--blue)">TP-PYTHON</a>, <a href="https://github.com/Bouldochette/DjangoDonneesFinal" style="color:var(--blue)">DjangoDonneesFinal</a>) illustrent mes compétences en Python et Django.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Actions</div>
+              <ul>
+                <li>Arbre de résolution d'incidents Wi-Fi (Computacenter) — guide pas-à-pas pour les techniciens N1</li>
+                <li>Arbre de communication N1 / techniciens terrain — structuration des échanges lors des interventions sur site</li>
+                <li>DjangoDonneesFinal : application web Python/Django de gestion de données</li>
+                <li>TP-PYTHON : scripts d'automatisation réseau (Netmiko, Paramiko)</li>
+              </ul>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">SAÉ</div>
+              <p>SAÉ 2.03 — Outil de supervision réseau en Python : scraping SNMP, dashboard temps réel, alertes par seuil, versionné sur GitHub.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Réflexivité</div>
+              <p>Chez Computacenter, j'ai réalisé que la valeur d'un outil ne tient pas qu'à son code mais à son adoption : les arbres de résolution ont été conçus avec les N1 pour coller à leur réalité terrain. Cette démarche co-constructive est au cœur de toute bonne ingénierie IT.</p>
+            </div>
+          </div>
+          <div class="comp-tags">
+            <span class="tg tg-blue">Python</span><span class="tg tg-blue">Django</span>
+            <span class="tg tg-blue">Netmiko</span><span class="tg tg-blue">Bash</span>
+            <span class="tg tg-green">Git / GitHub</span><span class="tg tg-green">Computacenter</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-num-col"><span class="comp-num">C04</span></div>
+        <div class="comp-col">
+          <div class="comp-title">Déployer des services dans une architecture réseau</div>
+          <div class="comp-subtitle">Installation et configuration de services réseau et applicatifs</div>
+          <div class="comp-body">
+            <div class="comp-row">
+              <div class="comp-row-label">Contexte</div>
+              <p>En SAÉ à l'UHA et lors de mon alternance chez Comunic, j'ai déployé des services réseau complets sur des environnements Linux et Windows Server, ainsi que des infrastructures télécom chez des clients.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Actions</div>
+              <ul>
+                <li>Déploiement DNS/DHCP sous Linux (Bind9, ISC-DHCP)</li>
+                <li>Configuration d'un domaine Active Directory Windows Server</li>
+                <li>Services web (Apache, Nginx) avec HTTPS</li>
+                <li>Installation vidéosurveillance IP chez clients PME (Comunic)</li>
+                <li>Déploiement application Django (DjangoDonneesFinal)</li>
+              </ul>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">SAÉ</div>
+              <p>SAÉ 2.04 — Infrastructure d'entreprise complète : DNS, DHCP, AD, HTTPS sur réseau virtualisé, avec documentation et tests de validation.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Réflexivité</div>
+              <p>La gestion des dépendances entre services (DNS avant AD) et les contraintes terrain chez Comunic m'ont appris à planifier méthodiquement tout déploiement avant d'agir.</p>
+            </div>
+          </div>
+          <div class="comp-tags">
+            <span class="tg tg-blue">Linux</span><span class="tg tg-blue">Windows Server</span>
+            <span class="tg tg-blue">DNS/DHCP</span><span class="tg tg-blue">Active Directory</span>
+            <span class="tg tg-blue">Docker</span><span class="tg tg-blue">Django</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-num-col"><span class="comp-num">C05</span></div>
+        <div class="comp-col">
+          <div class="comp-title">Identifier et gérer des risques de la cybersécurité</div>
+          <div class="comp-subtitle">Compétence cœur du parcours Cyber — Analyse, prévention, réponse aux incidents</div>
+          <div class="comp-body">
+            <div class="comp-row">
+              <div class="comp-row-label">Contexte</div>
+              <p>Spécialisation Cybersécurité à l'UHA. En formation et lors de challenges CTF, j'ai appris à identifier les vulnérabilités et analyser les attaques (phishing, injection SQL, bruteforce). Chez Computacenter, j'ai observé la gestion de la sécurité sur l'infrastructure d'un opérateur énergétique critique.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Actions</div>
+              <ul>
+                <li>Analyse de trafic Wireshark — détection d'anomalies et d'attaques</li>
+                <li>Challenges CTF (Root-Me, TryHackMe)</li>
+                <li>Rédaction d'une politique de sécurité pour une PME (SAÉ)</li>
+                <li>Étude de cas RGPD et gestion des incidents de sécurité</li>
+                <li>Observation SIEM en contexte infrastructure critique (Computacenter)</li>
+              </ul>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">SAÉ</div>
+              <p>SAÉ 2.05 — Audit de sécurité : méthodologie OWASP, scan Nmap, analyse Wireshark, rapport de vulnérabilités et plan de remédiation.</p>
+            </div>
+            <div class="comp-row">
+              <div class="comp-row-label">Réflexivité</div>
+              <p>Les CTF m'ont appris que la sécurité repose autant sur la connaissance des techniques d'attaque que sur la rigueur défensive. Chez Computacenter, j'ai compris que sur une infrastructure critique, la moindre faille a des conséquences réelles. Ces savoirs sont directement applicables en SOC ou en audit.</p>
+            </div>
+          </div>
+          <div class="comp-tags">
+            <span class="tg tg-blue">Wireshark</span><span class="tg tg-blue">Nmap</span>
+            <span class="tg tg-blue">Metasploit</span><span class="tg tg-blue">SIEM</span>
+            <span class="tg tg-blue">RGPD</span>
+            <span class="tg tg-green">TryHackMe</span><span class="tg tg-green">Root-Me</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STAGE -->
+<section id="stage" class="alt-section">
+  <div class="container">
+    <div class="sec-label" data-n="4">Expérience pro</div>
+    <h2>Mon stage</h2>
+    <p class="sec-intro">8 semaines chez Computacenter à Saint-Priest — support réseau d'un opérateur énergétique français et développement d'outils internes.</p>
+    <div class="stage-cards reveal">
+
+      <div class="s-card">
+        <h3>
+          <img class="s-logo" src="logo-computacenter.png" alt="Computacenter" onerror="this.style.display='none'">
+          Computacenter — Stage
+        </h3>
+        <div class="s-row"><span class="s-label">Entreprise</span><span class="s-val">Computacenter</span></div>
+        <div class="s-row"><span class="s-label">Localisation</span><span class="s-val">Saint-Priest, 69 (Métropole Lyon)</span></div>
+        <div class="s-row"><span class="s-label">Durée</span><span class="s-val">8 semaines · 2026</span></div>
+        <div class="s-row"><span class="s-label">Client</span><span class="s-val">Grand fournisseur d'électricité français</span></div>
+        <div class="s-row"><span class="s-label">Statut</span><span class="s-val"><span class="badge-g">✓ Stage validé</span></span></div>
+      </div>
+
+      <div class="s-card">
+        <h3>📋 Missions principales</h3>
+        <ul class="s-list">
+          <li>Support N1/N2 sur l'ensemble du réseau du fournisseur d'électricité</li>
+          <li>Création d'un arbre de résolution d'incidents Wi-Fi pour les techniciens N1</li>
+          <li>Création d'un arbre de communication entre les N1 et les techniciens envoyés sur site</li>
+          <li>Gestion et suivi de tickets via outils ITSM</li>
+          <li>Application des procédures de sécurité (SIEM, politiques d'accès)</li>
+        </ul>
+      </div>
+
+      <div class="s-card s-card-full">
+        <h3><img class="s-logo" src="logo-comunic.png" alt="Comunic" style="background:#000;" onerror="this.style.display='none'"> Alternance Comunic — Technicien Réseaux (2025)</h3>
+        <p style="color:var(--muted3); font-size:0.85rem; line-height:1.75;">
+          En alternance chez Comunic (Colmar), j'intervenais comme technicien terrain : installation de <strong style="color:var(--white)">téléphonie IP, réseaux LAN/WAN et vidéosurveillance</strong> chez des particuliers et PME alsaciennes. Ce contrat a été rompu avant son terme pour des raisons indépendantes de mes compétences. J'ai rapidement rebondi en décrochant le stage chez Computacenter à Saint-Priest.
+        </p>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="badge-r">⚠ Alternance rompue — Comunic 2025</span>
+          <span class="badge-g">✓ Stage Computacenter 2026 — Validé</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CV -->
+<section id="cv" class="cv-bg">
+  <div class="container">
+    <div class="sec-label" data-n="5">Curriculum Vitae</div>
+    <h2>CV en anglais</h2>
+    <p class="sec-intro">CV requis dans le portfolio selon les critères d'évaluation du BUT RT.</p>
+    <div class="cv-wrap">
+      <div class="cv-dl">
+        <a href="CV MEHDI NEFZI BUT2 (1).pdf" download class="btn btn-primary">⬇ Télécharger le CV (PDF)</a>
+      </div>
+      <div class="cv-card reveal">
+        <div class="cv-name">Mehdi NEFZI</div>
+        <div class="cv-title">BUT Networks & Telecommunications — Cybersecurity Track | 2nd Year · UHA Colmar</div>
+        <div class="cv-contact">
+          <span>📧 <a href="mailto:mehdi.nefzi@uha.fr">mehdi.nefzi@uha.fr</a></span>
+          <span>📞 <a href="tel:+33644102869">06 44 10 28 69</a></span>
+          <span>📍 Lyon, France</span>
+          <span>🔗 <a href="https://linkedin.com/in/mehdi-nefzi" target="_blank">linkedin.com/in/mehdi-nefzi</a></span>
+          <span>🐱 <a href="https://github.com/Bouldochette" target="_blank">github.com/Bouldochette</a></span>
+          <span>🚗 Driving License B — Own vehicle</span>
+        </div>
+
+        <div class="cv-h3">Profile</div>
+        <p class="cv-desc" style="padding:0;">
+          2nd-year Networks &amp; Telecommunications student specializing in Cybersecurity at Université de Haute-Alsace, Colmar. Completed an 8-week internship at Computacenter (Saint-Priest) providing network support for a major French electricity provider and developing internal tools to streamline N1 technician workflows. Active GitHub contributor. Based in Lyon. Driving license, own vehicle. Seeking a 3rd-year work-study contract (alternance) in cybersecurity or network engineering.
+        </p>
+
+        <div class="cv-h3">Education</div>
+        <div class="cv-exp">
+          <div class="cv-exp-h">
+            <span class="cv-exp-title">Bachelor of Technology — Networks & Telecommunications, Cybersecurity</span>
+            <span class="cv-exp-date">2023 – present</span>
+          </div>
+          <div class="cv-exp-org">
+            <img src="logo-uha.png" alt="UHA" onerror="this.style.display='none'">
+            Université de Haute-Alsace (UHA) · Colmar, France
+          </div>
+          <div class="cv-desc">
+            <ul>
+              <li>5 core competencies: Network Admin, Connectivity, Programming, Service Deployment, Cybersecurity</li>
+              <li>Courses: Network Protocols, System Security, Cryptography, Python/Django, Linux/Windows Server</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-h3">Professional Experience</div>
+        <div class="cv-exp">
+          <div class="cv-exp-h">
+            <span class="cv-exp-title">Network Support & IT Tools Developer — Intern</span>
+            <span class="cv-exp-date">2026 · 8 weeks</span>
+          </div>
+          <div class="cv-exp-org">
+            <img src="logo-computacenter.png" alt="Computacenter" onerror="this.style.display='none'">
+            Computacenter · Saint-Priest (Lyon), France
+          </div>
+          <div class="cv-desc">
+            <ul>
+              <li>Provided N1/N2 network support for the entire IT infrastructure of a major French electricity provider</li>
+              <li>Created a Wi-Fi incident resolution decision tree for N1 technicians</li>
+              <li>Created a communication workflow tree between N1 staff and on-site field technicians</li>
+              <li>Managed network incidents via ITSM; applied security policies and observed SIEM monitoring</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cv-exp">
+          <div class="cv-exp-h">
+            <span class="cv-exp-title">Field Network Technician — Apprentice (contract terminated)</span>
+            <span class="cv-exp-date">2025</span>
+          </div>
+          <div class="cv-exp-org"><img src="logo-comunic.png" alt="Comunic" style="background:#000;" onerror="this.style.display='none'"> Comunic · Colmar, France</div>
+          <div class="cv-desc">
+            <ul>
+              <li>On-site installation of IP telephony, LAN/WAN networks, and video surveillance systems</li>
+              <li>Deployments at residential clients and SMEs across the Alsace region</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cv-exp">
+          <div class="cv-exp-h">
+            <span class="cv-exp-title">Cashier — Seasonal</span>
+            <span class="cv-exp-date">Summer</span>
+          </div>
+          <div class="cv-exp-org">
+            <img src="logo-leclerc.png" alt="Leclerc" onerror="this.style.display='none'">
+            E.Leclerc · France
+          </div>
+          <div class="cv-desc"><p>Checkout operations, customer service, high-traffic period management.</p></div>
+        </div>
+        <div class="cv-exp">
+          <div class="cv-exp-h">
+            <span class="cv-exp-title">Cherry Picker — Seasonal Agricultural Work</span>
+            <span class="cv-exp-date">Summer</span>
+          </div>
+          <div class="cv-exp-org">Agricultural farm · Alsace, France</div>
+          <div class="cv-desc"><p>Seasonal fruit harvesting — endurance and rigor in demanding outdoor conditions.</p></div>
+        </div>
+
+        <div class="cv-h3">Technical Skills</div>
+        <div class="cv-skills">
+          <span class="cv-tag">Cisco IOS</span><span class="cv-tag">VLAN / OSPF / BGP</span>
+          <span class="cv-tag">Linux (Debian/Ubuntu)</span><span class="cv-tag">Windows Server / AD</span>
+          <span class="cv-tag">Python / Bash</span><span class="cv-tag">Django</span>
+          <span class="cv-tag">Wireshark / Nmap</span><span class="cv-tag">VPN IPSec / OpenVPN</span>
+          <span class="cv-tag">DNS / DHCP / HTTP(S)</span><span class="cv-tag">Docker</span>
+          <span class="cv-tag">Git / GitHub</span><span class="cv-tag">SIEM</span>
+          <span class="cv-tag">CTF (TryHackMe / Root-Me)</span>
+          <span class="cv-tag">IP Telephony</span><span class="cv-tag">Video Surveillance IP</span>
+        </div>
+
+        <div class="cv-h3">Languages & Miscellaneous</div>
+        <div class="cv-skills">
+          <span class="cv-tag">French — Native</span>
+          <span class="cv-tag">English — B2</span>
+          <span class="cv-tag">Arabic — Native / Heritage</span>
+          <span class="cv-tag">Driving License B — Own vehicle</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-label" data-n="5">Contact</div>
+    <h2>Me contacter</h2>
+    <p class="sec-intro">Pour toute opportunité de stage, alternance ou simplement pour échanger autour de la cybersécurité et des réseaux.</p>
+    <div class="contact-grid">
+      <a href="mailto:mehdi.nefzi@uha.fr" class="contact-item">
+        <span class="contact-icon">📧</span>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-val">mehdi.nefzi@uha.fr</div>
+        </div>
+      </a>
+      <a href="tel:+33644102869" class="contact-item">
+        <span class="contact-icon">📞</span>
+        <div>
+          <div class="contact-info-label">Téléphone</div>
+          <div class="contact-info-val">06 44 10 28 69</div>
+        </div>
+      </a>
+      <a href="https://github.com/Bouldochette" target="_blank" class="contact-item">
+        <span class="contact-icon">🐱</span>
+        <div>
+          <div class="contact-info-label">GitHub</div>
+          <div class="contact-info-val">Bouldochette</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/mehdi-nefzi" target="_blank" class="contact-item">
+        <span class="contact-icon">🔗</span>
+        <div>
+          <div class="contact-info-label">LinkedIn</div>
+          <div class="contact-info-val">mehdi-nefzi</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Mehdi NEFZI · BUT RT2 Cybersécurité · UHA Colmar</span>
+  <div class="footer-links">
+    <a href="https://github.com/Bouldochette" target="_blank">GitHub</a>
+    <a href="CV MEHDI NEFZI BUT2 (1).pdf" download>CV PDF</a>
+    <a href="#accueil">↑ top</a>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const ioNav = new IntersectionObserver(e => {
+    e.forEach(x => {
+      if(x.isIntersecting) {
+        links.forEach(a => a.style.color = '');
+        const l = document.querySelector(`.nav-links a[href="#${x.target.id}"]`);
+        if(l) l.style.color = 'var(--blue)';
+      }
+    });
+  }, { threshold: 0.4 });
+  secs.forEach(s => ioNav.observe(s));
+</script>
+</body>
+</html>
